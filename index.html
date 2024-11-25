@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="EgoCast: Forecasting Egocentric Human Pose in the Wild.">
+  <!-- <meta name="keywords" content="Nerfies, D-NeRF, NeRF"> -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>EgoCast: Forecasting Egocentric Human Pose in the Wild</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script> -->
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <!-- <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+     <a class="navbar-item" href="https://keunhong.com">
+      <span class="icon">
+          <i class="fas fa-home"></i>
+      </span>
+      </a> 
+
+       <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          More Research
+        </a>
+        <div class="navbar-dropdown">
+          <a class="navbar-item" href="https://hypernerf.github.io">
+            HyperNeRF
+          </a>
+          <a class="navbar-item" href="https://nerfies.github.io">
+            Nerfies
+          </a>
+          <a class="navbar-item" href="https://latentfusion.github.io">
+            LatentFusion
+          </a>
+          <a class="navbar-item" href="https://photoshape.github.io">
+            PhotoShape
+          </a>
+        </div> 
+       </div>
+    </div>
+
+  </div> -->
+</nav>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">EgoCast: Forecasting Egocentric Human Pose in the Wild</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://mc-escobar11.github.io">Maria Escobar</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=1FvyvPcAAAAJ&hl=en&oi=ao">Juanita Puentes</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=zRFjbnYAAAAJ&hl=en&oi=ao">Cristhian Forigua</a><sup>1</sup>,
+            </span>
+            <p></p>
+            <span class="author-block">
+              <a href="https://jponttuset.cat">Jordi Pont-Tuset</a><sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://www.kmaninis.com">Kevis-Kokitsi Maninis</a><sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=k0nZO90AAAAJ&hl=en&oi=ao">Pablo Arbeláez</a><sup>1</sup>,
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>CINFONIA, Universidad de Los Andes, Bogotá </span>
+            <p></p>
+            <span class="author-block"><sup>2</sup>Google, Zürich </span>           
+          </div>
+
+
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="https://arxiv.org/"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://arxiv.org/"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Video Link. -->
+              <!-- <span class="link-block">
+                <a href="https://www.youtube.com/watch?v=MrKrnHhk8IA"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span> -->
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/BCV-Uniandes/EgoCast"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+              <!-- Dataset Link. -->
+              <!-- <span class="link-block">
+                <a href="https://github.com/google/nerfies/releases/tag/0.1"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="far fa-images"></i>
+                  </span>
+                  <span>Data</span>
+                  </a> -->
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <video id="teaser" autoplay muted loop playsinline height="100%">
+        <source src="./static/videos/Egocast_short.mp4"
+                type="video/mp4">
+      </video>
+      <h2 class="subtitle has-text-centered">
+        <span class="dnerf">EgoCast</span> is a novel framework for full-body pose forecasting. We use visual and proprioceptive cues to accurately predict body motion.
+      </h2>
+    </div>
+  </div>
+</section>
+
+
+<!-- <section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container">
+      <div id="results-carousel" class="carousel results-carousel">
+        <div class="item item-steve">
+          <video poster="" id="steve" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/steve.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-chair-tp">
+          <video poster="" id="chair-tp" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/chair-tp.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-shiba">
+          <video poster="" id="shiba" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/shiba.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-fullbody">
+          <video poster="" id="fullbody" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/fullbody.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-blueshirt">
+          <video poster="" id="blueshirt" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/blueshirt.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-mask">
+          <video poster="" id="mask" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/mask.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-coffee">
+          <video poster="" id="coffee" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/coffee.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-toby">
+          <video poster="" id="toby" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/toby2.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> -->
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+          Accurately estimating and forecasting human body pose is important for enhancing the user's sense of immersion in Augmented
+          Reality. Addressing this need, our paper introduces <span class="dnerf">EgoCast</span>, a bimodal method for 3D human pose forecasting using egocentric
+          videos and proprioceptive data. We study the task of human pose forecasting in a realistic setting, extending the boundaries
+          of temporal forecasting in dynamic scenes and building on the current framework for current pose estimation in the wild.
+          We introduce a current-frame estimation module that generates pseudo-groundtruth poses for inference, eliminating the
+          need for past groundtruth poses typically required by current methods during forecasting. Our experimental results on
+          the recent Ego-Exo4D and Aria Digital Twin datasets validate <span class="dnerf">EgoCast</span> for real-life motion estimation. On the Ego-Exo4D
+          Body Pose 2024 Challenge, our method significantly outperforms the state-of-the-art approaches, laying the groundwork
+          for future research in human pose estimation and forecasting in unscripted activities with egocentric inputs.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3"><span class="dnerf">EgoCast</span> </h2>
+        <!-- Interpolating. -->
+        <h3 class="title is-4">Human Pose Forecasting Benchmark</h3>
+        <div class="column content">
+          <p>
+            The task for the Human Pose Forecasting Benchmark is predicting a set of 3D human poses in the future given visual and proprioceptive data from the past. 
+            EgoCast focuses on a realistic forecasting setting since it does not assume that the models will have
+             access to ground-truth poses from previous frames, and we evaluate on longer than usual timeframes.  
+          </p>
+          <!-- <video id="matting-video" controls playsinline height="100%">
+            <source src="./static/videos/matting.mp4"
+                    type="video/mp4">
+          </video> -->
+          <div class="content has-text-centered">
+            <img src="./static/images/benchmark.png"
+                class="interpolation-image"
+                alt="Benchmark formulation."/>
+          </div>
+          
+        </div>
+
+        <h3 class="title is-4">Architecture</h3>
+        <div class="column content">
+          <p>
+            Given a sequence of camera poses and RGB images from the headset, we first estimate the 3D full-body pose at each timestamp via the current-frame estimation module.
+            Then, the pose forecasting module uses these predicted body poses, together with the proprioceptive inputs, to estimate the 3D human poses in the following frames in the future.
+            Overall, Egocast proposes a whole pipeline for 3D human pose estimation in real-world scenarios where only the input streams given by the headset are available. 
+          </p>
+          <div class="content has-text-centered">
+            <img src="./static/images/overviewNew.png"
+                class="interpolation-image"
+                alt="Interpolate start reference image."/>
+          </div>
+          
+        </div>
+        <h3 class="title is-4">Results</h3>
+        <div class="column content">
+          <h3 class="title is-5">Current-frame pose estimation</h3>
+          <div class="content has-text-centered">
+            <img src="./static/images/joints_V2.png"
+                class="interpolation-image"
+                alt="Interpolate start reference image."/>
+          </div>
+          <h3 class="title is-5">Pose forecasting</h3>
+          <div class="content has-text-centered">
+            <img src="./static/images/qual2.png"
+                class="interpolation-image"
+                alt="Interpolate start reference image."/>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <!--/ Matting. -->
+
+    <!-- Animation. -->
+    <!--/ Animation. -->
+
+
+    <!-- Concurrent Work. -->
+    <!-- <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Related Links</h2>
+
+        <div class="content has-text-justified">
+          <p>
+            There's a lot of excellent work that was introduced around the same time as ours.
+          </p>
+          <p>
+            <a href="https://arxiv.org/abs/2104.09125">Progressive Encoding for Neural Optimization</a> introduces an idea similar to our windowed position encoding for coarse-to-fine optimization.
+          </p>
+          <p>
+            <a href="https://www.albertpumarola.com/research/D-NeRF/index.html">D-NeRF</a> and <a href="https://gvv.mpi-inf.mpg.de/projects/nonrigid_nerf/">NR-NeRF</a>
+            both use deformation fields to model non-rigid scenes.
+          </p>
+          <p>
+            Some works model videos with a NeRF by directly modulating the density, such as <a href="https://video-nerf.github.io/">Video-NeRF</a>, <a href="https://www.cs.cornell.edu/~zl548/NSFF/">NSFF</a>, and <a href="https://neural-3d-video.github.io/">DyNeRF</a>
+          </p>
+          <p>
+            There are probably many more by the time you are reading this. Check out <a href="https://dellaert.github.io/NeRF/">Frank Dellart's survey on recent NeRF papers</a>, and <a href="https://github.com/yenchenlin/awesome-NeRF">Yen-Chen Lin's curated list of NeRF papers</a>.
+          </p>
+        </div>
+      </div>
+    </div> -->
+    <!--/ Concurrent Work. -->
+
+  </div>
+</section>
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{escobar2025egocast,
+  author    = {Escobar, Maria and Puentes, Juanita and Forigua, Cristhian and Pont-Tuset, Jordi and Maninis, Kevis-Kokitsi and Arbeláez, Pablo},
+  title     = {EgoCast: Forecasting Egocentric Human Pose in the Wild},
+  booktitle = {Proceedings of the IEEE/CVF Winter Conference on Applications of Computer Vision},
+  year      = {2025},
+}</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link" href="https://github.com/BCV-Uniandes" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <!-- <p>
+            This website is licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p> -->
+          <p class="has-text-centered">
+            This website uses the template from this <a
+              href="https://github.com/nerfies/nerfies.github.io">source code</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
